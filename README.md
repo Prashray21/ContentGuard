@@ -32,23 +32,17 @@ Built using **Flask** and a **state-of-the-art deep learning model**, it provide
    cd ContentGuard
    ```
 
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # (Windows: venv\Scripts\activate)
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run the Flask app:**
+3. **Run the Flask app:**
    ```bash
    python app.py
    ```
 
-5. **Open your browser** and visit  
+4. **Open your browser** and visit  
    👉 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
@@ -57,7 +51,7 @@ Built using **Flask** and a **state-of-the-art deep learning model**, it provide
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
-| `POST` | `/predict` | Upload an image and get NSFW prediction results |
+| `POST` | `/analyze` | Upload an image and get NSFW prediction results |
 | `GET`  | `/` | Returns the home page / upload interface |
 
 Example Request:
@@ -92,13 +86,13 @@ The prediction score (`nsfw_score`) ranges between **0** (safe) and **1** (expli
 ```
 ContentGuard/
 │
-├── app.py                # Flask app entry point
-├── static/               # CSS, JS, and static files
-├── templates/            # HTML templates
-├── model/                # Trained NSFW detection model
-├── utils/                # Helper scripts (preprocessing, inference)
-├── requirements.txt      # Dependencies
-└── README.md             # Project documentation
+├── app.py                  # Flask app entry point
+├── style.css               # CSS file
+├── script.js               # JS file
+├── index.html              # HTML templates
+├── nsfw_image_detection/   # Trained NSFW detection model
+├── requirements.txt        # Dependencies
+└── README.md               # Project documentation
 ```
 
 ---
@@ -133,4 +127,4 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
-### ✨ Made with ❤️ by Pratham Tagad
+### ✨ Made with ❤️ by Our Team
