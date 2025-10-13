@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Guard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="name" style="margin-left: 5px;">Content Guard</div>
+        <div class="right_menu">
+            <div class="about">
+                <a class="link" href="/about" target="_blank">About</a>
+            </div>
+            <div class="github">
+                <a class="link" href="https://github.com/Prashray21/ContentGuard" target="_blank">Github</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <div class="toggle">
+                <div class="toggle_image toggle_image_active">Image</div>
+                <div class="toggle_video">Video</div>
+            </div>
+
+            <div class="upload" id="uploadBox">
+                <input type="file" id="upload" accept="image/*">
+                <p class="upload_text">📁 Drag & Drop or <span>Choose File</span></p>
+            </div>
+        </div>
+
+        <div class="right">
+            <img src="" alt="Preview" class="up_image">
+            <video controls class="up_video"></video>
+            <div class="result">No file uploaded yet.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
