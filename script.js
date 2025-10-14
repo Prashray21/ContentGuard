@@ -56,16 +56,35 @@ upload.addEventListener("change", async (e) => {
         }
 
         const data = await response.json();
-        const { label, confidence } = data;
 
-        result.innerHTML = `
-            Prediction: <b>${label}</b><br>
-            Confidence: ${confidence.toFixed(2)}%
-        `;
-        result.style.color = label.toLowerCase() === "normal" ? "green" : "red";
+        if (data.type === "image") {
+            const { label, confidence } = data;
+            result.innerHTML = `
+                <b>Image Analysis Result</b><br>
+                Prediction: <b>${label}</b><br>
+                Confidence: ${confidence.toFixed(2)}%
+            `;
+            result.style.color = label.toLowerCase() === "normal" ? "green" : "red";
+
+        } else if (data.type === "video") {
+            const { total_frames_analyzed, nsfw_frames, nsfw_ratio, verdict } = data;
+            predection = verdict.toLowerCase() === "nsfw" ? "Not Safe For Working!" : "Safe For Working!";
+            result.innerHTML = `
+                <b>Video Analysis Result</b><br>
+                Frames Analyzed: ${total_frames_analyzed}<br>
+                NSFW Frames: ${nsfw_frames}<br>
+                NSFW Ratio: ${nsfw_ratio}%<br>
+                Verdict: <b>${predection}</b>
+            `;
+            result.style.color = verdict === "SFW" ? "green" : "red";
+        } else if (data.error) {
+            result.innerHTML = `${data.error}`;
+            result.style.color = "orange";
+        }
 
     } catch (error) {
         console.error("Error:", error);
         result.innerHTML = "Server not responding. Please try again.";
     }
+
 });
