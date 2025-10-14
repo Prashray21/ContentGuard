@@ -28,7 +28,7 @@ Built using **Flask** and a **state-of-the-art deep learning model**, it provide
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/ContentGuard.git
+   git clone https://github.com/Prashray21/ContentGuard
    cd ContentGuard
    ```
 
