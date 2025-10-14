@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #0c2d48;
+    font-family: Arial, sans-serif;
+    color: #fff;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .header {
+    background-color: #bfc8d0;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .frame {
+    display: flex;
+    justify-content: space-between;
+    background-color: #133a52;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    background-color: #a9b5c0;
+    border-radius: 15px;
+    width: 48%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inner-card {
+    background-color: #7b8d9a;   
+    width: 85%;
+    height: 85%;
+    border-radius: 12px;
+    padding: 6px;                
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .description {
+    color: #000;
+    padding: 20%;
+
+  }
+    .images {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;         
+    border-radius: 10px;
+    }
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+      margin-bottom: 15px;
+      height: 180px;
+    }
+
+    .frame {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">About Us</div>
+
+    <div class="frame">
+      <div class="card">
+        <div class="inner-card"><img class="images" src = "images/pratham.jpeg"></div>
+      </div>
+      <div class="card"><p class="description">Pratham – Developed the core functionality and wrote the backend code for the project, ensuring the NSFW detection model runs smoothly and efficiently.</p></div>
+    </div>
+
+    <div class="frame">
+      <div class="card"> <p class="description">Prashray – Designed the user interface and overall frontend experience, focusing on a clean layout, responsive design, and seamless interaction flow.</p></div>
+      <div class="card">
+        <div class="inner-card"><img class="images" src = "images/prashray.jpeg"></div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="card">
+        <div class="inner-card"></div>
+      </div>
+      <div class="card"><p class="description">Toshi – Created the project logo, blending visual clarity with symbolic depth to represent content safety and AI-driven moderation. Also contributed design insights to maintain brand consistency across the app.</p></div>
+    </div>
+
+    <div class="frame">
+      <div class="card"><p class="description">Nehal – Co-designed the logo alongside Toshi, refining color palettes, typography, and icon balance to ensure a professional and trustworthy brand identity. Assisted in aligning the logo with the project’s modern tech aesthetic.</p></div>
+      <div class="card">
+        <div class="inner-card"><img class="images" src = "images/nehal.jpeg"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
