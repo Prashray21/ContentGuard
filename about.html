@@ -26,11 +26,13 @@
   .header {
     background-color: #bfc8d0;
     text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
     color: #000;
-    font-weight: 500;
-    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
   }
 
   .frame {
@@ -38,19 +40,22 @@
     justify-content: space-between;
     background-color: #133a52;
     padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
     flex-wrap: wrap;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
   }
 
   .card {
     background-color: #a9b5c0;
     border-radius: 15px;
     width: 48%;
-    height: 200px;
+    min-height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
 
   .inner-card {
@@ -64,26 +69,69 @@
     align-items: center;
   }
 
-  .description {
-    color: #000;
-    padding: 20%;
-
-  }
-    .images {
+  .images {
     width: 100%;
     height: 100%;
-    object-fit: contain;         
+    object-fit: cover;         
     border-radius: 10px;
-    }
-  @media (max-width: 768px) {
+  }
+
+  .description {
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 20px;
+    text-align: justify;
+  }
+
+  @media (max-width: 900px) {
     .card {
       width: 100%;
       margin-bottom: 15px;
-      height: 180px;
+      min-height: 200px;
     }
 
     .frame {
       flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .description {
+      padding: 15px;
+      font-size: 0.95rem;
+    }
+
+    .inner-card {
+      width: 90%;
+      height: auto;
+      padding: 10px;
+    }
+
+    .images {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      font-size: 1.4rem;
+      padding: 10px;
+    }
+
+    .frame {
+      padding: 15px;
+    }
+
+    .card {
+      min-height: 180px;
+    }
+
+    .description {
+      font-size: 0.9rem;
+      line-height: 1.4;
     }
   }
 </style>
@@ -95,36 +143,56 @@
 
     <div class="frame">
       <div class="card">
-        <div class="inner-card"><img class="images" src = "images/pratham.jpeg"></div>
+        <div class="inner-card">
+          <img class="images" src="images/pratham.jpeg" alt="Pratham">
+        </div>
       </div>
-      <div class="card"><p class="description">Pratham – Developed the core functionality and wrote the backend code for the project, ensuring the NSFW detection model runs smoothly and efficiently.</p></div>
-    </div>
-
-    <div class="frame">
-      <div class="card"> <p class="description">Prashray – Designed the user interface and overall frontend experience, focusing on a clean layout, responsive design, and seamless interaction flow.</p></div>
       <div class="card">
-        <div class="inner-card"><img class="images" src = "images/prashray.jpeg"></div>
-      </div>
-    </div>
-
-    <div class="frame">
-      <div class="card">
-        <div class="inner-card"></div>
-      </div>
-      <div class="card"><p class="description">Toshi – Created the project logo, blending visual clarity with symbolic depth to represent content safety and AI-driven moderation. Also contributed design insights to maintain brand consistency across the app.</p></div>
-      <div class="card">
-        <div class="inner-card"><img class="images" src = "images/toshi.jpg"></div>
+        <p class="description">
+          <strong>Pratham</strong> – Developed the core functionality and wrote the backend code for the project, ensuring the NSFW detection model runs smoothly and efficiently.
+        </p>
       </div>
     </div>
 
     <div class="frame">
-      <div class="card"><p class="description">Nehal – Co-designed the logo alongside Toshi, refining color palettes, typography, and icon balance to ensure a professional and trustworthy brand identity. Assisted in aligning the logo with the project’s modern tech aesthetic.</p></div>
       <div class="card">
-        <div class="inner-card"><img class="images" src = "images/nehal.jpeg"></div>
+        <p class="description">
+          <strong>Prashray</strong> – Designed the user interface and overall frontend experience, focusing on a clean layout, responsive design, and seamless interaction flow.
+        </p>
+      </div>
+      <div class="card">
+        <div class="inner-card">
+          <img class="images" src="images/prashray.jpeg" alt="Prashray">
+        </div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="card">
+        <div class="inner-card">
+          <img class="images" src="images/toshi.jpg" alt="Toshi">
+        </div>
+      </div>
+      <div class="card">
+        <p class="description">
+          <strong>Toshi</strong> – Created the project logo, blending visual clarity with symbolic depth to represent content safety and AI-driven moderation. Also contributed design insights to maintain brand consistency across the app.
+        </p>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="card">
+        <p class="description">
+          <strong>Nehal</strong> – Co-designed the logo alongside Toshi, refining color palettes, typography, and icon balance to ensure a professional and trustworthy brand identity. Assisted in aligning the logo with the project’s modern tech aesthetic.
+        </p>
+      </div>
+      <div class="card">
+        <div class="inner-card">
+          <img class="images" src="images/nehal.jpeg" alt="Nehal">
+        </div>
       </div>
     </div>
   </div>
 
 </body>
 </html>
-
