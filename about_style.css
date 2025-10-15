@@ -1,0 +1,173 @@
+:root {
+    --body-color: #1B3C53;
+    --first-layer: #ffffffb0;
+    --second-layer: #456882;
+    --second-layer-opacity: #456882b0;
+    --body-first-layer: #234C6A;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--body-color);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Header */
+.header {
+    margin: 15px;
+    align-items: center;
+    border-radius: 15px;
+    background-color: var(--first-layer);
+    padding: 15px;
+    text-align: center;
+}
+
+.name {
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    border-radius: 15px;
+    padding: 15px;
+    background: var(--body-first-layer);
+}
+
+/* Member Sections */
+.details {
+    display: flex;
+    margin: 15px;
+    background-color: var(--first-layer);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.left, .right {
+    background-color: var(--second-layer);
+    border-radius: 20px;
+    padding: 20px;
+    flex: 1 1 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 15px;
+    height: auto;
+}
+
+.mem_name {
+    margin-top: 15px;
+    text-align: center;
+    background-color: var(--first-layer);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.desc {
+    color: white;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+/* Tablets and small laptops */
+@media (max-width: 992px) {
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left, .right {
+        width: 100%;
+        width: calc(100% - 60px);
+        padding: 15px;
+    }
+
+    img {
+        max-width: 180px;
+    }
+
+    .name {
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+    .header {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .name {
+        font-size: 1.1rem;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .details {
+        margin: 10px;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .left, .right {
+        padding: 10px;
+        width: calc(100% - 60px);
+    }
+
+    img {
+        max-width: 130px;
+    }
+
+    .mem_name {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .desc {
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+    .name {
+        font-size: 1rem;
+    }
+
+    .details {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    img {
+        max-width: 100px;
+    }
+
+    .desc {
+        font-size: 0.85rem;
+    }
+}
