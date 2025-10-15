@@ -12,7 +12,7 @@ toggleImage.addEventListener("click", () => {
     toggleImage.classList.add("toggle_image_active");
     toggleVideo.classList.remove("toggle_video_active");
     upload.accept = "image/*";
-    result.innerHTML = "Upload an image for analysis.";
+    resetUI("Upload an image for analysis.");
 });
 
 toggleVideo.addEventListener("click", () => {
@@ -20,13 +20,24 @@ toggleVideo.addEventListener("click", () => {
     toggleVideo.classList.add("toggle_video_active");
     toggleImage.classList.remove("toggle_image_active");
     upload.accept = "video/*";
-    result.innerHTML = "Upload a video for analysis.";
+    resetUI("Upload a video for analysis.");
 });
+
+function resetUI(message) {
+    upImage.style.display = "none";
+    upVideo.style.display = "none";
+    upImage.src = "";
+    upVideo.src = "";
+    result.style.display = "block";
+    result.innerHTML = message;
+    result.style.color = 'rgb(107, 114, 128)';
+}
 
 upload.addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
+    result.style.display = "none";
     const fileURL = URL.createObjectURL(file);
 
     if (currentMode === "image") {
@@ -39,36 +50,70 @@ upload.addEventListener("change", async (e) => {
         upImage.style.display = "none";
     }
 
-    result.innerHTML = "⏳ Analyzing... Please wait.";
+    const tempResultContainer = document.createElement('div');
+    tempResultContainer.className = 'result text-black-500 text-center';
+    tempResultContainer.innerHTML = "⏳ Analyzing... Please wait.";
+    upImage.parentElement.appendChild(tempResultContainer);
+    
+    result.style.display = "none";
 
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/analyze", {
+        const response = await fetch("/analyze", {
             method: "POST",
             body: formData
         });
 
         if (!response.ok) {
-            result.innerHTML = "Error analyzing file.";
-            return;
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "An unknown server error occurred.");
+            } else {
+                throw new Error(`Server returned an unexpected response. Status: ${response.status}`);
+            }
         }
 
         const data = await response.json();
-        const { label, confidence } = data;
+        
+        result.style.display = 'block';
 
-        result.innerHTML = `
-            Prediction: <b>${label}</b><br>
-            Confidence: ${confidence.toFixed(2)}%
-        `;
-        result.style.color = label.toLowerCase() === "normal" ? "green" : "red";
+        if (data.type === "image") {
+            const { label, confidence } = data;
+            result.innerHTML = `
+                <b class='text-lg'>Image Analysis Result</b><br>
+                Prediction: <b class='font-semibold'>${label}</b><br>
+                Confidence: ${confidence.toFixed(2)}%
+            `;
+            result.style.color = label.toLowerCase() === "normal" || label.toLowerCase() === "sfw" ? "green" : "red";
+        } else if (data.type === "video") {
+            const { total_frames_analyzed, nsfw_frames, nsfw_ratio, verdict } = data;
+            const prediction = verdict.toLowerCase() === "nsfw" ? "Not Safe For Work!" : "Safe For Work!";
+            result.innerHTML = `
+                <b class='text-lg'>Video Analysis Result</b><br>
+                Frames Analyzed: ${total_frames_analyzed}<br>
+                NSFW Frames: ${nsfw_frames}<br>
+                NSFW Ratio: ${nsfw_ratio}%<br>
+                Verdict: <b class='font-semibold'>${prediction}</b>
+            `;
+            result.style.color = verdict === "SFW" ? "green" : "red";
+        } else if (data.error) {
+             throw new Error(data.error);
+        }
 
     } catch (error) {
         console.error("Error:", error);
-        result.innerHTML = "Server not responding. Please try again.";
+        result.style.display = 'block';
+        result.innerHTML = `Error: ${error.message}`;
+        result.style.color = "orange";
+    } finally {
+        // upImage.style.display = "none";
+        // upVideo.style.display = "none";
+        if (tempResultContainer) {
+            tempResultContainer.remove();
+        }
     }
 });
-document.querySelector('.menu_button').addEventListener('click', function() {
-  document.querySelector('.menu_dropdown').classList.toggle('active');
-});
+
